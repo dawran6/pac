@@ -1,27 +1,6 @@
 (ns pac.handlers
-  (:require [hiccup.core :as hiccup1]
-            [hiccup2.core :as hiccup]))
+  (:require [hiccup2.core :as hiccup]))
 
-
-
-;; GET /activity/new
-(defn new-activity-form [req]
+(defn index [req]
   {:status 200
-   :body (str (hiccup/html [:div
-                            [:form {:method "POST" :action "/activity"}
-                             [:div
-                              [:label]
-                              [:input {:name "title"}]]
-                             [:div
-                              [:input {:type "submit"}]]]]))
-   })
-
-;; POST /activity
-(defn create-activity [req]
-  {:status 200
-   :body "ok"}
-  )
-
-;; GET /activity/:id
-(defn get-activity [req]
-  )
+   :body   (str (hiccup/html [:h1 "Hello Pac!"]))})

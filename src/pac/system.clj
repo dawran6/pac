@@ -4,8 +4,7 @@
             [aero.core :as aero]
             [integrant.core :as integrant]
             [reitit.ring :as reitit]
-            [pac.handlers :as handlers]
-            ))
+            [pac.handlers :as handlers]))
 
 (defmethod aero/reader 'ig/ref
   [_ _ value]
@@ -19,10 +18,8 @@
   (expand [this _] {:handler this}))
 
 (def routes
-  [["/" ::index]
-
-
-   ])
+  [["/" {:name ::index
+         :get  #'handlers/index}]])
 
 (defmethod integrant/init-key :router [_ config]
   (reitit.ring/router routes))
