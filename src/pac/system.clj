@@ -11,7 +11,7 @@
   (integrant/ref value))
 
 (defn read-config []
-  (aero/read-config (io/resource "pac/system.edn")))
+  (aero/read-config (io/resource "system.edn")))
 
 (extend-protocol reitit.core/Expand
   clojure.lang.Var
@@ -25,7 +25,12 @@
   (reitit.ring/router routes))
 
 (defmethod integrant/init-key :ring-handler [_ config]
-  (reitit.ring/ring-handler (:router config)))
+  (reitit.ring/ring-handler
+    (:router config)
+    (reitit/routes
+      (reitit/create-resource-handler {:path "/"})
+      (reitit/create-default-handler
+        {:not-found (constantly {:status 404 :body "Not found"})}))))
 
 (defmethod integrant/init-key :http-kit [_ config]
   (assoc config
