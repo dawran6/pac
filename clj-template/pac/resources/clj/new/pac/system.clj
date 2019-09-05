@@ -11,7 +11,7 @@
   (integrant/ref value))
 
 (defn read-config []
-  (aero/read-config (io/resource "{{root-ns}}/system.edn")))
+  (aero/read-config (io/resource "system.edn")))
 
 (extend-protocol reitit.core/Expand
   clojure.lang.Var

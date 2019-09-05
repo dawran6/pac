@@ -21,6 +21,6 @@
              ["deps.edn" (render "deps.edn" data)]
              ["test.http" (render "test.http" data)]
              ["dev/user.clj" (render "user.clj" data)]
-             ["resources/{{sanitized}}/system.edn" (render "system.edn" data)]
+             ["resources/system.edn" (render "system.edn" data)]
              ["src/{{sanitized}}/system.clj" (render "system.clj" data)]
              ["src/{{sanitized}}/handlers.clj" (render "handlers.clj" data)])))
