@@ -10,7 +10,14 @@
  :paths ["src" "test" "resources"]
 
  :aliases
- {:dev {:extra-paths ["dev"]}
-  :new {:extra-deps {seancorfield/clj-new
-                     {:mvn/version "0.7.8"}}
-        :main-opts  ["-m" "clj-new.create"]}}}
+ {:dev    {:extra-paths ["dev"]}
+  :new    {:extra-paths ["clj-template"]
+           :extra-deps  {seancorfield/clj-new
+                         {:mvn/version "0.7.8"}}
+           :main-opts   ["-m" "clj-new.create"]}
+  :deploy {:extra-deps {deps-deploy {:mvn/version "RELEASE"}}
+           :main-opts  ["-m" "deps-deploy.deps-deploy" "deploy"
+                        "path/to/my.jar"]}
+  :cli
+  {:extra-paths ["bin"]
+   :main-opts   ["-m" "pac"]}}}
