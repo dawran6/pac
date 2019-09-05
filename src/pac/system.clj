@@ -1,10 +1,10 @@
-(ns activities.system
+(ns pac.system
   (:require [org.httpkit.server :as httpkit]
             [clojure.java.io :as io]
             [aero.core :as aero]
             [integrant.core :as integrant]
             [reitit.ring :as reitit]
-            [activities.handlers :as handlers]
+            [pac.handlers :as handlers]
             ))
 
 (defmethod aero/reader 'ig/ref
@@ -12,7 +12,7 @@
   (integrant/ref value))
 
 (defn read-config []
-  (aero/read-config (io/resource "activities/system.edn")))
+  (aero/read-config (io/resource "pac/system.edn")))
 
 (extend-protocol reitit.core/Expand
   clojure.lang.Var
@@ -20,15 +20,9 @@
 
 (def routes
   [["/" ::index]
-   ["/activities"
-    ["/new" {:name ::new-activity
-             :get  #'handlers/new-activity-form}]]
-   ["/activity"
-    {:name ::create-activity
-     :post #'handlers/create-activity}]
-   ["/activity"
-    ["/:id" {:name ::activity
-             :get  #'handlers/get-activity}]]])
+
+
+   ])
 
 (defmethod integrant/init-key :router [_ config]
   (reitit.ring/router routes))

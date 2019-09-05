@@ -1,4 +1,4 @@
-(ns activities.handlers
+(ns pac.handlers
   (:require [hiccup.core :as hiccup1]
             [hiccup2.core :as hiccup]))
 
